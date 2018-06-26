@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Dosis|Quicksand');
+
 body {
   margin-top: 70px;
   height: 100vh;
@@ -6,6 +8,8 @@ body {
 
 .header-text {
   margin-left: 120px;
+  margin-bottom: 30px;
+  font-family: 'Dosis';
   color: whitesmoke;
 }
 
@@ -20,4 +24,15 @@ body {
 .selectTag {
   height: 40px;
   margin-bottom: 30px;
+}
+
+.btn {
+  font-family: 'Quicksand';
+}
+
+.to-span {
+  color: whitesmoke;
+  font-family: 'Quicksand';
+  margin-right: 20px;
+  margin-left: 20px;
 }
