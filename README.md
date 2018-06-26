@@ -1,4 +1,4 @@
-#### Currency Converter
+## Currency Converter
 
 > This is a simple currency converter application that helps to convert currencies from over 150 nations
 
