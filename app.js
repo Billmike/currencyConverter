@@ -1,3 +1,11 @@
+if (navigator.serviceWorker) {
+  navigator.serviceWorker.register('sw.js').then(() => {
+    console.log('Service worker running.')
+  }).catch((error) => {
+    new Promise.reject(error);
+  })
+}
+
 // // In the following line, you should include the prefixes of implementations you want to test.
 // window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 // // DON'T use "var indexedDB = ..." if you're not in a function.
