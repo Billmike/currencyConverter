@@ -39,7 +39,7 @@ const fetchNations = () => {
     }
 
     request.onsuccess = (event) => {
-
+      request.onupgradeneeded();
     }
 
     request.onupgradeneeded = (event) => {
