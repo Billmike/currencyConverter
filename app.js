@@ -7,7 +7,7 @@ window.IDBKeyRange = window.IDBKeyRange || window.webkitIDBKeyRange || window.ms
 // (Mozilla has never prefixed these objects, so we don't need window.mozIDB*)
 
 const dbName = "secondCurrencyConverter";
-const request = window.indexedDB.open(dbName, 7);
+const request = window.indexedDB.open(dbName, 10);
 let db;
 
 if (!window.indexedDB) {
