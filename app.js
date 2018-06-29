@@ -24,36 +24,6 @@ if (navigator.serviceWorker) {
 }
 
 /**
- * This function is responsible for reading the data from the indexedDB.
- */
-const readDataFromDB = () => {
-  request.onsuccess = (event) => {
-    const db = event.target.result;
-
-    // Open a read-only transaction for connecting to Database
-    const transaction = db.transaction("currencies", "readonly");
-    const DBStore = transaction.objectStore("currencies");
-
-    // call getAll() to fetch all objects from the currencies object-store
-    const getAllObjects = DBStore.getAll();
-
-    // Create an on-success function that handles successful calls to the database
-    getAllObjects.onsuccess = () => {
-      /**
-       * getAllObjects returns a result array containing all objects found in the database
-       * We can then map through it to get a single object and append it to an HTML select element.
-       */
-      getAllObjects.result.map(singleCountry => {
-        const fromCurrencySelect = document.getElementById("fromCurrency");
-        const toCurrencySelect = document.getElementById("toCurrency");
-        fromCurrencySelect.options[fromCurrencySelect.options.length] = new Option(`${singleCountry.currencyName}`, `${singleCountry.id}`);
-        toCurrencySelect.options[toCurrencySelect.options.length] = new Option(`${singleCountry.currencyName}`, `${singleCountry.id}`);
-      })
-    }
-  }
-}
-
-/**
  * This function handles the calls to the free-currency converter API.
  * It fetches the currencies of all nations and saves it to the Database.
  */
@@ -96,8 +66,40 @@ const fetchNations = () => {
   })
 }
 
-fetchNations()
-readDataFromDB()
+
+/**
+ * This function is responsible for reading the data from the indexedDB.
+ */
+const readDataFromDB = () => {
+  request.onsuccess = (event) => {
+    const db = event.target.result;
+
+    // Open a read-only transaction for connecting to Database
+    const transaction = db.transaction("currencies", "readonly");
+    const DBStore = transaction.objectStore("currencies");
+
+    // call getAll() to fetch all objects from the currencies object-store
+    const getAllObjects = DBStore.getAll();
+
+    // Create an on-success function that handles successful calls to the database
+    getAllObjects.onsuccess = () => {
+      /**
+       * getAllObjects returns a result array containing all objects found in the database
+       * We can then map through it to get a single object and append it to an HTML select element.
+       */
+      getAllObjects.result.map(singleCountry => {
+        const fromCurrencySelect = document.getElementById("fromCurrency");
+        const toCurrencySelect = document.getElementById("toCurrency");
+        fromCurrencySelect.options[fromCurrencySelect.options.length] = new Option(`${singleCountry.currencyName}`, `${singleCountry.id}`);
+        toCurrencySelect.options[toCurrencySelect.options.length] = new Option(`${singleCountry.currencyName}`, `${singleCountry.id}`);
+      })
+    }
+  }
+}
+
+
+fetchNations();
+readDataFromDB();
 
 // getCurrencies = (event) => {
 //   const db = event.target.result;
