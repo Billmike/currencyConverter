@@ -21,7 +21,7 @@ const convertCurrencies = (event) => {
 
   const parsedRetrievedCurrency = JSON.parse(retrievedCurrencyPairs);
 
-  if (parsedRetrievedCurrency.hasOwnProperty(query)) {
+  if (parsedRetrievedCurrency !== null && parsedRetrievedCurrency.hasOwnProperty(query)) {
     const { val } = parsedRetrievedCurrency[query];
     const offlineConversionValue = currencyValue * val;
     document.getElementById("currencyId").value *= offlineConversionValue;
