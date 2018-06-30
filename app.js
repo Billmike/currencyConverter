@@ -1,5 +1,5 @@
 if (navigator.serviceWorker) {
-  navigator.serviceWorker.register('sw.js').then(() => {
+  navigator.serviceWorker.register('/sw.js').then(() => {
     console.log('Service worker running.')
   }).catch((error) => {
     new Promise.reject(error);
