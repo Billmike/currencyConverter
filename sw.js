@@ -7,8 +7,8 @@ const filesToCache = [
   '/idb.js'
 ];
 
+
 self.addEventListener('install', (event) => {
-  console.log('[Service worker is installed]');
   event.waitUntil(
     caches.open(cacheName).then((cache) => {
       console.log('[Service worker] caching shell.');
@@ -18,14 +18,25 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('fetch', (event) => {
-  console.log(">>>>>>>>>", event.request.url);
   event.respondWith(
     caches.match(event.request)
-      .then(function(response) {
+      .then((response) => {
         if (response) {
           return response;
         }
-        return fetch(event.request);
+        const fetchRequest = event.request.clone();
+
+        return fetch(fetchRequest).then(returnedResponse => {
+          if (!returnedResponse || returnedResponse.status !== 200 || returnedResponse.type !== 'basic') {
+            return returnedResponse;
+          }
+          const currencyResponseToCache = returnedResponse.clone();
+
+          caches.open(cacheName).then(cache => {
+            cache.put(event.request, currencyResponseToCache);
+          })
+          return returnedResponse;
+        })
       }
     )
   );

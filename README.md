@@ -3,8 +3,9 @@
 > This is a simple currency converter application that helps to convert currencies from over 150 nations
 
 #### Features
-- Users can convert currencies from one denomination to another
-- Users can convert currencies while offline
+- Users can convert currencies from one denomination to another.
+- While offline, users can still get currencies of various nations.
+- Users can convert currencies while offline.
 
 #### Technology stack used
 - Vanilla Javascript

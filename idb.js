@@ -16,6 +16,6 @@ const fromCurrencySelect = document.getElementById("fromCurrency");
 const toCurrencySelect = document.getElementById("toCurrency")
 
 for (const objects in parsedStoredCurrency) {
-  fromCurrencySelect.options[fromCurrencySelect.options.length] = new Option(`${parsedStoredCurrency[objects].currencyName}`, `${parsedStoredCurrency[objects].currencyName}`);
-  toCurrencySelect.options[toCurrencySelect.options.length] = new Option(`${parsedStoredCurrency[objects].currencyName}`, `${parsedStoredCurrency[objects].currencyName}`)
+  fromCurrencySelect.options[fromCurrencySelect.options.length] = new Option(`${parsedStoredCurrency[objects].currencyName}`, `${parsedStoredCurrency[objects].currencyId}`);
+  toCurrencySelect.options[toCurrencySelect.options.length] = new Option(`${parsedStoredCurrency[objects].currencyName}`, `${parsedStoredCurrency[objects].currencyId}`)
 }
