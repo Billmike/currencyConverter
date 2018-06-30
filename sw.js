@@ -1,10 +1,10 @@
 const cacheName = 'new-currency-converter';
 const dataCacheName = 'converted-cache-v6';
 const filesToCache = [
-  '/app.js',
-  '/index.html',
-  '/styles.css',
-  '/idb.js'
+  './app.js',
+  './index.html',
+  './styles.css',
+  './idb.js'
 ];
 
 

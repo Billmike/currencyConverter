@@ -31,7 +31,6 @@ const convertCurrencies = (event) => {
   fetch(conversionURL).then(response => {
     return response.json();
   }).then(returnedResponse => {
-    console.log("The stringified array in LC", returnedResponse);
     localStorage.setItem("CurrencyPair", JSON.stringify(returnedResponse));
     const { val } = returnedResponse[query];
     document.getElementById("currencyId").value *= val;
