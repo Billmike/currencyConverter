@@ -7,9 +7,13 @@ if (navigator.serviceWorker) {
 }
 
 const convertCurrencies = (event) => {
+
+  // Prevent the form from submitting each time the convert button is clicked
   document.getElementById("formId").addEventListener("click", (event) => {
     event.preventDefault();
-  })
+  });
+
+  // Get the value of the currency to be converted from, currency to be converted to and the amount
   const fromCurrencyValue = document.getElementById("fromCurrency").value;
   const toCurrencyValue = document.getElementById("toCurrency").value;
   const currencyValue = document.getElementById("currencyId").value;
@@ -21,10 +25,12 @@ const convertCurrencies = (event) => {
 
   const parsedRetrievedCurrency = JSON.parse(retrievedCurrencyPairs);
 
+  // Do not make an API call if the user has not entered a value in the input field.
   if (document.getElementById("currencyId").value === "") {
     return;
   }
 
+  // Check if the currency pair is already stored. If it is, make use of it and do not make an API call
   if (parsedRetrievedCurrency !== null && parsedRetrievedCurrency.hasOwnProperty(query)) {
     const { val } = parsedRetrievedCurrency[query];
     const offlineConversionValue = currencyValue * val;
@@ -32,6 +38,7 @@ const convertCurrencies = (event) => {
     return toastr.info("Conversion was successful.");
   }
 
+  // Make an API call to get the conversion rate and save it for another operation.
   fetch(conversionURL).then(response => {
     return response.json();
   }).then(returnedResponse => {
